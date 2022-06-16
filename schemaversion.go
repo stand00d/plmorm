@@ -30,7 +30,7 @@ func SetNewVersion(g *gorm.DB, v SchemaVersion) error {
 	} else {
 		x := v
 		x.UpdatedAt = time.Now()
-		g.Update(x)
+		g.Update(&x)
 	}
 	return nil
 }
