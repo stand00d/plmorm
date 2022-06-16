@@ -43,6 +43,7 @@ func MigrateSchema(c *gorm.DB) error {
 		fmt.Println("Major Schema version does not match:")
 		SetNewVersion(c, typesversion)
 	}
+
 	if dbversion.MinorVersion != typesversion.MinorVersion {
 		fmt.Println("Minor Schema version does not match:")
 		SetNewVersion(c, typesversion)
