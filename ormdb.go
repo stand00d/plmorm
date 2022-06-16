@@ -6,7 +6,7 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-func OpenPLMORMConnection() {
+func OpenPLMORMConnection() *gorm.DB {
 
 	dbConn, err := gorm.Open("mysql", "gormdba:gormdba@tcp(127.0.0.1:3306)/gormdb?charset=utf8&parseTime=true")
 
@@ -24,6 +24,7 @@ func OpenPLMORMConnection() {
 	if err != nil {
 		fmt.Println(err)
 	}
+	return dbConn
 }
 
 func MigrateSchema(c *gorm.DB) error {
