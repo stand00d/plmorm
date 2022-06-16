@@ -1,4 +1,4 @@
-package plmormtypes
+package plmorm
 
 import (
 	"time"

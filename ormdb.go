@@ -4,7 +4,6 @@ import (
 	"fmt"
 
 	"github.com/jinzhu/gorm"
-	"github.com/stand00d/plmorm/plmormtypes"
 )
 
 func OpenPLMORMConnection() {
@@ -29,18 +28,18 @@ func OpenPLMORMConnection() {
 
 func MigrateSchema(c *gorm.DB) error {
 
-	var dbversion plmormtypes.SchemaVersion
+	var dbversion SchemaVersion
 
 	err := c.First(&dbversion)
 
 	if err != nil {
 		fmt.Println("Error getting version: ", err)
 	}
-	c.AutoMigrate(&plmormtypes.SchemaVersion{})
-	typesversion := plmormtypes.GetTypesSchemaVersion()
+	c.AutoMigrate(&SchemaVersion{})
+	typesversion := GetTypesSchemaVersion()
 	if dbversion.MajorVersion != typesversion.MajorVersion {
 		fmt.Println("Major Schema version does not match:")
-		plmormtypes.SetNewVersion(c, typesversion)
+		SetNewVersion(c, typesversion)
 	}
 	return nil
 }
